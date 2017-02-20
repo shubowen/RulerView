@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RulerView">
+        <attr name="spaceCount" format="integer"/>
+        <attr name="spaceWidth" format="dimension"/>
+        <attr name="gapBetweenLineAndText" format="dimension"/>
+        <attr name="pointerColor" format="color"/>
+        <attr name="pointerWidth" format="dimension"/>
+        <attr name="lineCreator" format="string"/>
+        <attr name="startIndex" format="float"/>
+        <attr name="pauseOnNearestIndex" format="boolean"/>
+    </declare-styleable>
+</resources>

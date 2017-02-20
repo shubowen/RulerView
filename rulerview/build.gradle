@@ -1,0 +1,56 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    provided 'com.android.support:support-v4:25.0.0'
+}
+
+signing {
+    required { has("release") && gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+}
+
+uploadArchives {
+    configuration = configurations.archives
+    repositories.mavenDeployer {
+        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+        repository(url: 'http://117.78.40.97:9003/nexus/content/repositories/releases/') {//正式仓库地址
+            authentication(userName: "admin", password: "CN9hb3EHDhx2VACi")//密码
+        }
+        repository(url: 'http://117.78.40.97:9003/nexus/content/repositories/snapshots/') {//快件仓库地址
+            authentication(userName: "admin", password: "CN9hb3EHDhx2VACi")//密码
+        }
+
+        pom.project {
+            name 'RulerView'
+            packaging 'aar'
+            description '直尺控件'
+            url 'http://117.78.40.97:9003/nexus/content/repositories/releases/'//仓库地址
+            groupId "com.xiaosu.lib"
+            artifactId "RulerView"
+            version '1.0.0-SNAPSHOT'
+        }
+    }
+}
