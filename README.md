@@ -1,6 +1,8 @@
 # RulerView
-Android自定义直尺
+Android自定义直尺  
+
 ![image](https://github.com/shubowen/RulerView/blob/master/image/ruler.gif)
+
 自定义属性：
 
     <declare-styleable name="RulerView">
@@ -23,4 +25,5 @@ Android自定义直尺
     </declare-styleable>
 
 **已解耦刻度线样式**
+    
     如需自定义刻度线和刻度线上的文字，请仿RulerView$DefaultLineCreator实现ILineCreator
